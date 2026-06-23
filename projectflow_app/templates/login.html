@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Login - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-intro">
+        <span class="eyebrow">Secure workspace</span>
+        <h1>Project tracking for focused engineering teams.</h1>
+        <p>Sign in to review project status, deadlines, priorities, and execution queues in one clean interface.</p>
+        <div class="terminal-card">
+            <span>$ projectflow status</span>
+            <strong>projects: synced</strong>
+            <strong>tasks: ready</strong>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <span class="eyebrow">Authentication</span>
+        <h2>Login</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+
+            <div class="form-actions">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <p class="form-note">Do not have an account? <a href="{% url 'register' %}">Register</a></p>
+    </div>
+</section>
+{% endblock %}

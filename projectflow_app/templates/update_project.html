@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Update Project - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="form-page" aria-labelledby="update-project-heading">
+    <header class="section-header">
+        <span class="eyebrow">Edit project</span>
+        <h1 id="update-project-heading">Update project</h1>
+    </header>
+
+    <div class="form-card wide" role="region" aria-labelledby="update-project-form-heading">
+        <form id="update-project-form" method="POST" novalidate>
+            {% csrf_token %}
+
+            <label for="title">Project Title</label>
+            <input id="title" type="text" name="title" value="{{ project.title }}" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" required>{{ project.description }}</textarea>
+
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="Active" {% if project.status == 'Active' %}selected{% endif %}>Active</option>
+                <option value="Completed" {% if project.status == 'Completed' %}selected{% endif %}>Completed</option>
+                <option value="On Hold" {% if project.status == 'On Hold' %}selected{% endif %}>On Hold</option>
+            </select>
+
+            <div class="form-actions">
+                <button type="submit">Update Project</button>
+                <a class="button light" href="{% url 'project_detail' project.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

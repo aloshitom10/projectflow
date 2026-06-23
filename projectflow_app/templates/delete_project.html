@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Project - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="delete-box" aria-labelledby="delete-project-heading">
+    <span class="eyebrow">Confirm delete</span>
+    <h1 id="delete-project-heading">Delete project</h1>
+    <p>Are you sure you want to delete <strong>{{ project.title }}</strong>?</p>
+
+    <form method="POST" aria-label="Delete project confirmation">
+        {% csrf_token %}
+        <button class="danger-button" type="submit">Delete Project</button>
+        <a class="button light" href="{% url 'project_detail' project.id %}">Cancel</a>
+    </form>
+</section>
+{% endblock %}

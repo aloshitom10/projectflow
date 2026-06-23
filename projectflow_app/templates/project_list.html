@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="workspace-heading">
+    <div class="heading-copy">
+        <span class="eyebrow">Projects</span>
+        <h1>Project registry</h1>
+        <p>Search and scan the project portfolio with compact cards, status chips, and a clear delivery trail.</p>
+    </div>
+    <a class="button" href="{% url 'create_project' %}">Create Project</a>
+</section>
+
+<form class="search-box" method="get">
+    <input type="text" name="search" placeholder="Search by project title" value="{{ search }}">
+    <button type="submit">Search</button>
+</form>
+
+<section class="panel">
+    <div class="project-grid">
+        {% for project in projects %}
+            <article class="project-card">
+                <div class="card-top">
+                    <h2>{{ project.title }}</h2>
+                    <span class="status-pill status-{{ project.status|lower|cut:' ' }}">{{ project.status }}</span>
+                </div>
+                <p>{{ project.description|truncatewords:26 }}</p>
+                <div class="meta-row">
+                    <span>{{ project.tasks.count }} tasks</span>
+                    <span>{{ project.created_at|date:"M d, Y" }}</span>
+                </div>
+                <div class="card-actions">
+                    <a class="button small" href="{% url 'project_detail' project.id %}">View Details</a>
+                    <a class="button small light" href="{% url 'update_project' project.id %}">Edit</a>
+                </div>
+            </article>
+        {% empty %}
+            <div class="empty-state">
+                <h3>No projects found</h3>
+                <p>Add a project or try a different search term.</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

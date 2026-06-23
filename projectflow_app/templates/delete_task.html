@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Task - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="delete-box" aria-labelledby="delete-task-heading">
+    <span class="eyebrow">Confirm delete</span>
+    <h1 id="delete-task-heading">Delete task</h1>
+    <p>Are you sure you want to delete <strong>{{ task.title }}</strong>?</p>
+
+    <form method="POST" aria-label="Delete task confirmation">
+        {% csrf_token %}
+        <button class="danger-button" type="submit">Delete Task</button>
+        <a class="button light" href="{% url 'project_detail' task.project.id %}">Cancel</a>
+    </form>
+</section>
+{% endblock %}

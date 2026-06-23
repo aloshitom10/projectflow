@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Register - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-intro">
+        <span class="eyebrow">New workspace</span>
+        <h1>Create a clean control center for your projects.</h1>
+        <p>Each account gets isolated project and task views, which is useful for portfolios, demos, and small teams.</p>
+        <div class="terminal-card">
+            <span>$ init workspace</span>
+            <strong>auth: enabled</strong>
+            <strong>owner scope: active</strong>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <span class="eyebrow">Account setup</span>
+        <h2>Register</h2>
+        <form method="POST">
+            {% csrf_token %}
+
+            <label for="username">Username</label>
+            <input id="username" type="text" name="username" required>
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" required>
+
+            <div class="form-actions">
+                <button type="submit">Create Account</button>
+            </div>
+        </form>
+        <p class="form-note">Already have an account? <a href="{% url 'home' %}">Login</a></p>
+    </div>
+</section>
+{% endblock %}

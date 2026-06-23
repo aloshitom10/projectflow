@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Update Task - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="form-page" aria-labelledby="update-task-heading">
+    <header class="section-header">
+        <span class="eyebrow">Edit task</span>
+        <h1 id="update-task-heading">Update task</h1>
+    </header>
+
+    <div class="form-card wide" role="region" aria-labelledby="update-task-form-heading">
+        <form id="update-task-form" method="POST" novalidate>
+            {% csrf_token %}
+
+            <label for="title">Task Title</label>
+            <input id="title" type="text" name="title" value="{{ task.title }}" required>
+
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="To Do" {% if task.status == 'To Do' %}selected{% endif %}>To Do</option>
+                <option value="In Progress" {% if task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                <option value="Done" {% if task.status == 'Done' %}selected{% endif %}>Done</option>
+            </select>
+
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+                <option value="Low" {% if task.priority == 'Low' %}selected{% endif %}>Low</option>
+                <option value="Medium" {% if task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="High" {% if task.priority == 'High' %}selected{% endif %}>High</option>
+            </select>
+
+            <label for="due_date">Due Date</label>
+            <input id="due_date" type="date" name="due_date" value="{{ task.due_date|date:'Y-m-d' }}" required>
+
+            <div class="form-actions">
+                <button type="submit">Update Task</button>
+                <a class="button light" href="{% url 'project_detail' task.project.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

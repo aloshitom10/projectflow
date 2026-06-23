@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Create Task - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="form-page" aria-labelledby="add-task-heading">
+    <header class="section-header">
+        <span class="eyebrow">{{ project.title }}</span>
+        <h1 id="add-task-heading">Add task</h1>
+    </header>
+
+    <div class="form-card wide" role="region" aria-labelledby="add-task-form-heading">
+        <form id="add-task-form" method="POST" novalidate>
+            {% csrf_token %}
+
+            <label for="title">Task Title</label>
+            <input id="title" type="text" name="title" required>
+
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="To Do">To Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Done">Done</option>
+            </select>
+
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+
+            <label for="due_date">Due Date</label>
+            <input id="due_date" type="date" name="due_date" required>
+
+            <div class="form-actions">
+                <button type="submit">Save Task</button>
+                <a class="button light" href="{% url 'project_detail' project.id %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

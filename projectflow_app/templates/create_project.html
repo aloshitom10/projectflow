@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Create Project - ProjectFlow{% endblock %}
+
+{% block content %}
+<section class="form-page" aria-labelledby="create-project-heading">
+    <header class="section-header">
+        <span class="eyebrow">New project</span>
+        <h1 id="create-project-heading">Create project</h1>
+    </header>
+
+    <div class="form-card wide" role="region" aria-labelledby="create-project-form-heading">
+        <form id="create-project-form" method="POST" novalidate>
+            {% csrf_token %}
+
+            <label for="title">Project Title</label>
+            <input id="title" type="text" name="title" required>
+
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+
+            <label for="status">Status</label>
+            <select id="status" name="status">
+                <option value="Active">Active</option>
+                <option value="Completed">Completed</option>
+                <option value="On Hold">On Hold</option>
+            </select>
+
+            <div class="form-actions">
+                <button type="submit">Create Project</button>
+                <a class="button light" href="{% url 'project_list' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}
