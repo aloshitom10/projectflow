@@ -81,8 +81,12 @@ WSGI_APPLICATION = 'projectflow.wsgi.application'
 # the project requirement.
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db1',
+        'USER': 'root',
+        'PASSWORD': 'Root@1100',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
