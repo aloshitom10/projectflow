@@ -87,15 +87,12 @@ WSGI_APPLICATION = 'projectflow.wsgi.application'
 # usual environment variables (DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT)
 # or set DB_ENGINE to your preferred Django backend. Do NOT use SQLite per
 # the project requirement.
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db1',
-        'USER': 'root',
-        'PASSWORD': 'Root@1100',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
 }
 
 
