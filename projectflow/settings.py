@@ -136,8 +136,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Include the app-level static directory explicitly to ensure dev server finds styles
+
+
 STATICFILES_DIRS = [
-    BASE_DIR / 'projectflow_app' / 'static',
+    BASE_DIR / "projectflow_app" / "static",
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = BASE_DIR / "staticfiles"
